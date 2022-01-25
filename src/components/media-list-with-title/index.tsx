@@ -11,7 +11,7 @@ interface Props {
   items: MoviesListProps[];
 }
 
-export const ListWithTitle = (props: Props) => {
+export const MediaListWithTitle = (props: Props) => {
   const { title, items } = props;
 
   const [scrollX, setScrollX] = useState(0);
