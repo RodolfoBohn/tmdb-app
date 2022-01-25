@@ -4,14 +4,14 @@ import { END } from "redux-saga";
 import { getTrendingMoviesSaga } from "../store/action";
 import { storeWrapper } from "../store/store";
 import { StoreState } from "../@types";
-import { ListWithTitle } from "../components/depoisMudo";
+import { MediaList } from "../components/media-list";
 import { PageWrapper } from "../components/page-wrapper";
 
 const Home: NextPage = () => {
   const movies = useSelector((state: StoreState) => state.movie.trendingMovies);
   return (
     <PageWrapper>
-      <ListWithTitle title="Filmes em alta hoje" items={movies} />
+      <MediaList title="Filmes em alta hoje" items={movies} />
     </PageWrapper>
   );
 };

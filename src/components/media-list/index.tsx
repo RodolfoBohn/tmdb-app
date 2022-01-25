@@ -1,6 +1,6 @@
 import Link from "next/link";
 import { MoviesListProps } from "../../@types";
-import { List } from "../media-list";
+import { List } from "./components/media-list";
 import { NavigatorLeft, NavigatorRight, Wrapper } from "./components";
 import NavigateBeforeIcon from "@material-ui/icons/NavigateBefore";
 import NavigatAfterIcon from "@material-ui/icons/NavigateNext";
@@ -11,7 +11,7 @@ interface Props {
   items: MoviesListProps[];
 }
 
-export const MediaListWithTitle = (props: Props) => {
+export const MediaList = (props: Props) => {
   const { title, items } = props;
 
   const [scrollX, setScrollX] = useState(0);
