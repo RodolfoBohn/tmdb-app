@@ -1,9 +1,6 @@
 import type { NextPage } from "next";
-import Image from "next/image";
-import Link from "next/link";
 import { useSelector } from "react-redux";
 import { END } from "redux-saga";
-import { List } from "../components/media-list";
 import { getTrendingMoviesSaga } from "../store/action";
 import { storeWrapper } from "../store/store";
 import { StoreState } from "../@types";
