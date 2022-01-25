@@ -17,9 +17,11 @@ export const MediaList = (props: Props) => {
   const [scrollX, setScrollX] = useState(0);
   const [showLeftNavigator, setShowLeftNavigator] = useState(false)
   const [showRightNavigator, setShowRightNavigator] = useState(true)
+  //calcula o tamanho total da ul
+  const totalWidth = items.length * 215 + 60 - 15;
 
   function handleLeft() {
-    const x = scrollX + Math.round(window.innerWidth / 3);
+    const x = scrollX + Math.round(totalWidth / 6);
 
     if (x >= 0) {
       setScrollX(0);
@@ -33,8 +35,8 @@ export const MediaList = (props: Props) => {
   }
 
   function handleRight() {
-    const x = scrollX - Math.round(window.innerWidth / 3);
     const totalWidth = items.length * 215 + 60 - 15;
+    const x = scrollX - Math.round(totalWidth / 6);
 
     if (window.innerWidth - totalWidth >= x) {
       setScrollX(window.innerWidth - totalWidth);

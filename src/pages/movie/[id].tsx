@@ -8,6 +8,7 @@ import { FeaturedImage } from "../../components/featured-image";
 import { PageWrapper } from "../../components/page-wrapper";
 import { Overview } from "../../components/overview";
 import { Genres } from "../../components/genres";
+import { CastList } from "../../components/cast-list";
 
 const Movie: NextPage = () => {
   const movie = useSelector((state: StoreState) => state.movie.selectedMovie);
@@ -23,11 +24,7 @@ const Movie: NextPage = () => {
           <Overview overview={movie.overview} />
           <Genres genres={movie.genres} />
         </div>
-
-        <div>
-          <h3>Elenco</h3>
-        </div>
-        
+          <CastList title="Elenco" items={movie.cast} /> 
       </PageWrapper>
     </>
   );
