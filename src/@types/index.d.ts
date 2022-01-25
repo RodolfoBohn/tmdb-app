@@ -1,9 +1,9 @@
-import * as Redux from 'redux'
-import { Task } from 'redux-saga';
+import * as Redux from "redux";
+import { Task } from "redux-saga";
 
 declare module "redux" {
   export interface Store {
-    sagaTask: Task
+    sagaTask: Task;
   }
 }
 
@@ -25,11 +25,19 @@ export interface MovieDetailsProps {
   overview: string;
   release_date?: Date;
   title: string;
+  cast: CastProps[]
 }
 
 export interface MovieState {
   selectedMovie: MovieDetailsProps;
   trendingMovies: MoviesListProps[];
+}
+
+export interface CastProps {
+  id: number;
+  name: string;
+  profile_path: string;
+  character: string;
 }
 
 export interface StoreState {
@@ -79,4 +87,19 @@ export interface MovieListResponse {
   release_date: Date;
   popularity: number;
   media_type: string;
+}
+
+export interface CastResponse {
+  adult: boolean;
+  gender: number;
+  id: number;
+  known_for_department: string;
+  name: string;
+  original_name: string;
+  popularity: number;
+  profile_path: string;
+  cast_id: number;
+  character: string;
+  credit_id: string;
+  order: number;
 }

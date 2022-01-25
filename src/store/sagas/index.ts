@@ -1,7 +1,7 @@
 import { all, call, put, takeLatest } from "redux-saga/effects";
 import { mapper } from "../../mapper";
 import { apiService } from "../../service";
-import { MovieDetailsResponse, MovieListResponse } from "../../@types";
+import { CastResponse, MovieDetailsResponse, MovieListResponse } from "../../@types";
 import { getSelectedMovieSuccess, getTrendingMoviesSuccess, movieActionProps, MOVIE_ACTION } from "../action";
 
 function* getTrendingMovies() {
@@ -15,9 +15,10 @@ function* getTrendingMovies() {
 
 function* getSelectedMovie({id}:movieActionProps ) {
 
-  const response:MovieDetailsResponse = yield call(()=> apiService.getMovieDetails(id!))
+  const movieResponse:MovieDetailsResponse = yield call(()=> apiService.getMovieDetails(id!))
+  const castResponse: CastResponse[] = yield call(() => apiService.getMovieCast(id!))
 
-  const formattedMovie = mapper.movieDetailsResponseToDetals(response)
+  const formattedMovie = mapper.movieDetailsResponseToDetals({movie:movieResponse, cast: castResponse})
 
   yield put(getSelectedMovieSuccess(formattedMovie))
 }
