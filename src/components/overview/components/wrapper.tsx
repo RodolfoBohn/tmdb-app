@@ -6,7 +6,6 @@ export const Wrapper = styled.div`
   flex-direction: column;
   margin-top: 24px;
   width: 40%;
-  background: red;
 
   h3 {
     font-size: 32px;
