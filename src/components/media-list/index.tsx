@@ -18,10 +18,11 @@ export const MediaList = (props: Props) => {
   const [showLeftNavigator, setShowLeftNavigator] = useState(false)
   const [showRightNavigator, setShowRightNavigator] = useState(true)
   //calcula o tamanho total da ul
-  const totalWidth = items.length * 215 + 60 - 15;
+  const totalWidth = items.length * 215- 15;
 
   function handleLeft() {
-    const x = scrollX + Math.round(totalWidth / 6);
+    //valor de 430 para rodar de dois em dois itens
+    const x = scrollX + 430;
 
     if (x >= 0) {
       setScrollX(0);
@@ -35,18 +36,32 @@ export const MediaList = (props: Props) => {
   }
 
   function handleRight() {
-    const totalWidth = items.length * 215 + 60 - 15;
-    const x = scrollX - Math.round(totalWidth / 6);
+    const totalWidth = (items.length * 215);
+    const x = scrollX - 430;
+    alert(`Total: ${totalWidth}, 
+    Screen: ${window.innerWidth},
+     x: ${x}
+     Calculo: ${window.innerWidth - totalWidth}
+     `)
 
-    if (window.innerWidth - totalWidth >= x) {
-      setScrollX(window.innerWidth - totalWidth);
-      setShowRightNavigator(false)
-      setShowLeftNavigator(true)
-    } else {
-      setScrollX(x);
-      setShowRightNavigator(true)
-      setShowLeftNavigator(true)
-    }
+     if((window.innerWidth - totalWidth) > x) {
+       setScrollX(window.innerWidth - totalWidth -60)
+       setShowRightNavigator(false)
+       !showLeftNavigator && setShowLeftNavigator(true)
+       return;
+     }
+
+    setScrollX(x)
+
+    // if (totalWidth - scrollX) {
+    //   setScrollX(x);
+    //   setShowRightNavigator(false)
+    //   setShowLeftNavigator(true)
+    // } else {
+    //   setScrollX(x);
+    //   setShowRightNavigator(true)
+    //   setShowLeftNavigator(true)
+    // }
   }
 
   return (

@@ -25,12 +25,22 @@ export interface MovieDetailsProps {
   overview: string;
   release_date?: Date;
   title: string;
-  cast: CastProps[]
+  cast: CastProps[];
 }
 
 export interface MovieState {
   selectedMovie: MovieDetailsProps;
-  trendingMovies: MoviesListProps[];
+  trendingMoviesPerDay: MoviesListProps[];
+  trendingMoviesPerWeek: MoviesListProps[];
+}
+
+export interface AllTrendingMoviesResponse {
+  trendingMoviesPerDay: MovieListResponse[];
+  trendingMoviesPerWeek: MovieListResponse[];
+}
+export interface AllTrendingMoviesProps {
+  trendingMoviesPerDay: MoviesListProps[];
+  trendingMoviesPerWeek: MoviesListProps[];
 }
 
 export interface CastProps {
