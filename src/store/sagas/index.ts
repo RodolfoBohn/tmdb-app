@@ -5,9 +5,9 @@ import { CastResponse, MovieDetailsResponse, MovieListResponse } from "../../@ty
 import { getSelectedMovieSuccess, getTrendingMoviesSuccess, movieActionProps, MOVIE_ACTION } from "../action";
 
 function* getTrendingMovies() {
-  const response: MovieListResponse[] = yield call(()=> apiService.getTrendingMovies())
-
-  const formattedMovieList = mapper.movieListResponseToMovieList(response)
+  const responsePerDay: MovieListResponse[] = yield call(()=> apiService.getTrendingMoviesPerDay())
+  const responsePerWeek: MovieListResponse[] = yield call(()=> apiService.getTrendingMoviesPerWeek())
+  const formattedMovieList = mapper.allMoviesResponseToProps({trendingMoviesPerDay: responsePerDay, trendingMoviesPerWeek: responsePerWeek})
 
   yield put(getTrendingMoviesSuccess(formattedMovieList));
   

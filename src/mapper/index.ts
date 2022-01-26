@@ -1,4 +1,6 @@
 import {
+  AllTrendingMoviesProps,
+  AllTrendingMoviesResponse,
   CastProps,
   CastResponse,
   MovieDetailsProps,
@@ -25,6 +27,15 @@ class Mapper {
       title: movie.title,
       cast: this.castResponseToDetails(cast),
     };
+  }
+
+  allMoviesResponseToProps(
+    data: AllTrendingMoviesResponse
+  ): AllTrendingMoviesProps {
+    return {
+      trendingMoviesPerDay: this.movieListResponseToMovieList(data.trendingMoviesPerDay),
+      trendingMoviesPerWeek: this.movieListResponseToMovieList(data.trendingMoviesPerWeek),
+    }
   }
 
   movieListResponseToMovieList(data: MovieListResponse[]): MoviesListProps[] {

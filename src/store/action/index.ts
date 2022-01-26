@@ -1,4 +1,4 @@
-import { MovieDetailsProps, MoviesListProps } from "../../@types"
+import { AllTrendingMovies, MovieDetailsProps } from "../../@types"
 
 export interface movieActionProps {
   type: MOVIE_ACTION, 
@@ -27,7 +27,7 @@ export function getSelectedMovieSaga(id: string): movieActionProps {
   }
 }
 
-export function getTrendingMoviesSuccess(payload: MoviesListProps[]) : movieActionProps {
+export function getTrendingMoviesSuccess(payload: AllTrendingMovies) : movieActionProps {
   return {
     type: MOVIE_ACTION.GET_TRENDING_MOVIES_SUCCESS, 
     payload

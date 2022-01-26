@@ -8,10 +8,12 @@ import { MediaList } from "../components/media-list";
 import { PageWrapper } from "../components/page-wrapper";
 
 const Home: NextPage = () => {
-  const movies = useSelector((state: StoreState) => state.movie.trendingMovies);
+  const moviesPerDay = useSelector((state: StoreState) => state.movie.trendingMoviesPerDay);
+  const moviesPerWeek = useSelector((state: StoreState) => state.movie.trendingMoviesPerWeek)
   return (
     <PageWrapper>
-      <MediaList title="Filmes em alta hoje" items={movies} />
+      <MediaList title="Filmes em alta hoje" items={moviesPerDay} />
+      <MediaList title="Filmes em na semana" items={moviesPerWeek} />
     </PageWrapper>
   );
 };

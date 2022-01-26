@@ -9,8 +9,13 @@ class Service {
     return response.data as MovieDetailsResponse
   }
 
-  async getTrendingMovies() {
+  async getTrendingMoviesPerDay() {
     const response = await this.getAxiosInstance().get(`/trending/movie/day?api_key=${process.env.TMDB_API_KEY}&language=pt-BR`)
+    return response.data.results as CastResponse[]
+  }
+
+  async getTrendingMoviesPerWeek() {
+    const response = await this.getAxiosInstance().get(`/trending/movie/week?api_key=${process.env.TMDB_API_KEY}&language=pt-BR`)
     return response.data.results as CastResponse[]
   }
 

@@ -10,20 +10,23 @@ const initialSelectedMovie: MovieDetailsProps = {
   id: 0,
   overview: "",
   title: "",
+  cast: []
 };
 
 const initialState: MovieState = {
   selectedMovie: initialSelectedMovie,
-  trendingMovies: initialTrendingMovies,
+  trendingMoviesPerDay: initialTrendingMovies,
+  trendingMoviesPerWeek: initialTrendingMovies,
 };
-function movieReducer(state = initialState, action: AnyAction) {
+function movieReducer(state = initialState, action: AnyAction):MovieState {
   switch (action.type) {
     case HYDRATE:
       return action.payload.movie;
     case MOVIE_ACTION.GET_TRENDING_MOVIES_SUCCESS:
       return {
         ...state,
-        trendingMovies: [...action.payload],
+        trendingMoviesPerDay: [...action.payload.trendingMoviesPerDay],
+        trendingMoviesPerWeek: [...action.payload.trendingMoviesPerWeek]
       };
     case MOVIE_ACTION.GET_SELECTED_MOVIE_SUCCESS:
       return {
