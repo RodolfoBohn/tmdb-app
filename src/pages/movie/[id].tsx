@@ -9,17 +9,37 @@ import { PageWrapper } from "../../components/page-wrapper";
 import { Overview } from "../../components/overview";
 import { Genres } from "../../components/genres";
 import { CastList } from "../../components/cast-list";
+import { useEffect, useState } from "react";
+import { Header } from "../../components/header";
 
 const Movie: NextPage = () => {
   const movie = useSelector((state: StoreState) => state.movie.selectedMovie);
+  const [backgroundHeader, setBackgroundHeader] = useState(false)
+
+  useEffect(() => {
+    const scroll = () => {
+      if(window.scrollY > 100) {
+        setBackgroundHeader(true)
+      } else {
+        setBackgroundHeader(false)
+      }
+    }
+
+    window.addEventListener('scroll', scroll)
+
+    return () => {
+      window.removeEventListener('scroll', scroll)
+    }
+  }, [])
 
   return (
     <>
+    <Header hasBackgroundColor={backgroundHeader} />
       <FeaturedImage
         posterImage={`https://image.tmdb.org/t/p/original${movie.backdrop_path}`}
         title={movie.title}
       ></FeaturedImage>
-      <PageWrapper>
+      <PageWrapper isPrincipal={false}>
         <div style={{display: 'flex', justifyContent: 'space-between'}}>
           <Overview overview={movie.overview} />
           <Genres genres={movie.genres} />

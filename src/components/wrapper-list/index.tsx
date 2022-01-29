@@ -21,15 +21,15 @@ export const WrapperList = (props: Props) => {
   const [scrollX, setScrollX] = useState(0);
   const [showLeftNavigator, setShowLeftNavigator] = useState(false);
   const [showRightNavigator, setShowRightNavigator] = useState(true);
-  //calcula o tamanho total da ul
 
   function handleLeft() {
     //valor de 430 para rodar de dois em dois itens
     const x = scrollX + 430;
 
-    if (x >= 0) {
+    if (x >= -190) {
       setScrollX(0);
       setShowLeftNavigator(false);
+      !showRightNavigator && setShowRightNavigator(true);
       return;
     }
     setScrollX(x);
@@ -41,6 +41,7 @@ export const WrapperList = (props: Props) => {
     if (window.innerWidth - totalWidth > x) {
       setScrollX(window.innerWidth - totalWidth - 60);
       setShowRightNavigator(false);
+      !showLeftNavigator && setShowLeftNavigator(true);
       return;
     }
 

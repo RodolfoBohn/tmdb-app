@@ -6,15 +6,25 @@ import { storeWrapper } from "../store/store";
 import { StoreState } from "../@types";
 import { MediaList } from "../components/media-list";
 import { PageWrapper } from "../components/page-wrapper";
+import { PrincipalIntro } from "../components/principal-intro";
+import { Header } from "../components/header";
 
 const Home: NextPage = () => {
-  const moviesPerDay = useSelector((state: StoreState) => state.movie.trendingMoviesPerDay);
-  const moviesPerWeek = useSelector((state: StoreState) => state.movie.trendingMoviesPerWeek)
+  const moviesPerDay = useSelector(
+    (state: StoreState) => state.movie.trendingMoviesPerDay
+  );
+  const moviesPerWeek = useSelector(
+    (state: StoreState) => state.movie.trendingMoviesPerWeek
+  );
   return (
-    <PageWrapper>
-      <MediaList title="Filmes em alta hoje" items={moviesPerDay} />
-      <MediaList title="Filmes em na semana" items={moviesPerWeek} />
-    </PageWrapper>
+    <>
+      <Header hasBackgroundColor />
+      <PageWrapper isPrincipal>
+        <PrincipalIntro />
+        <MediaList title="Filmes em alta hoje" items={moviesPerDay} />
+        <MediaList title="Filmes em alta na semana" items={moviesPerWeek} />
+      </PageWrapper>
+    </>
   );
 };
 
