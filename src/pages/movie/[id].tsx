@@ -11,6 +11,7 @@ import { Genres } from "../../components/genres";
 import { CastList } from "../../components/cast-list";
 import { useEffect, useState } from "react";
 import { Header } from "../../components/header";
+import { DetailsWrapper } from "../../components/details-wrapper";
 
 const Movie: NextPage = () => {
   const movie = useSelector((state: StoreState) => state.movie.selectedMovie);
@@ -40,10 +41,10 @@ const Movie: NextPage = () => {
         title={movie.title}
       ></FeaturedImage>
       <PageWrapper isPrincipal={false}>
-        <div style={{display: 'flex', justifyContent: 'space-between'}}>
+        <DetailsWrapper style={{display: 'flex', justifyContent: 'space-between'}}>
           <Overview overview={movie.overview} />
           <Genres genres={movie.genres} />
-        </div>
+        </DetailsWrapper>
           <CastList title="Elenco" items={movie.cast} /> 
       </PageWrapper>
     </>
