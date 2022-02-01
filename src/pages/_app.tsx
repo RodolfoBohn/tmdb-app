@@ -1,9 +1,15 @@
-import '../styles/globals.css'
-import type { AppProps } from 'next/app'
-import { storeWrapper } from '../store/store'
+import "../styles/globals.css";
+import type { AppProps } from "next/app";
+import { storeWrapper } from "../store/store";
+import { Footer } from "../components/footer";
 
 function MyApp({ Component, pageProps }: AppProps) {
-  return <Component {...pageProps} />
+  return (
+    <>
+      <Component {...pageProps} />
+      <Footer />
+    </>
+  );
 }
 
-export default storeWrapper.withRedux(MyApp) 
+export default storeWrapper.withRedux(MyApp);
