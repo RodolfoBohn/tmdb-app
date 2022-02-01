@@ -13,7 +13,6 @@ export const CastListItem = styled.li`
     flex-direction: column;
     background-color: #bbbbbb;
     border-radius: 5px;
-    transition: 0.5s;
     position: relative;
 
     img {
@@ -24,13 +23,17 @@ export const CastListItem = styled.li`
     }
     p {
       margin: 0;
+      font-size: 20px;
       flex: 1;
       text-align: center;
       display: flex;
       align-items: center;
       justify-content: center;
       font-weight: bold;
-      transition: 0.5s;
+    }
+    p+p{
+      font-size: 16px;
+      font-weight: normal;
     }
   }
 
