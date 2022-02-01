@@ -1,12 +1,16 @@
 import {
   AllTrendingMoviesProps,
   AllTrendingMoviesResponse,
+  AllTrendingTvProps,
+  AllTrendingTvResponse,
   CastProps,
   CastResponse,
   MovieDetailsProps,
   MovieDetailsResponse,
   MovieListResponse,
   MoviesListProps,
+  TvListProps,
+  TvListResponse,
 } from "../@types";
 
 interface MovieDetailsToResponseProps {
@@ -46,6 +50,23 @@ class Mapper {
         id: movie.id,
       };
     });
+  }
+
+  allTvResponseToProps(data: AllTrendingTvResponse): AllTrendingTvProps {
+    return {
+      trendingTvPerDay: this.tvResponseToProps(data.trendingTvPerDay),
+      trendingTvPerWeek: this.tvResponseToProps(data.trendingTvPerWeek)
+    }
+  }
+
+  private tvResponseToProps(data: TvListResponse[]): TvListProps[] {
+    return data.map(tv => {
+      return {
+        id: tv.id,
+        poster_path: tv.poster_path,
+        title: tv.name
+      }
+    })
   }
 
   private castResponseToDetails(cast: CastResponse[]): CastProps[] {

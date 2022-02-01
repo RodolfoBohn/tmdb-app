@@ -13,6 +13,12 @@ export interface MoviesListProps {
   id: number;
 }
 
+export interface TvListProps {
+  title: string;
+  id: number;
+  poster_path: string;
+}
+
 export interface MovieDetailGenre {
   id: number;
   name: string;
@@ -34,6 +40,12 @@ export interface MovieState {
   trendingMoviesPerWeek: MoviesListProps[];
 }
 
+export interface TvState {
+  selectedTv: any;
+  trendingTvPerDay: TvListProps[];
+  trendingTvPerWeek: TvListProps[];
+}
+
 export interface AllTrendingMoviesResponse {
   trendingMoviesPerDay: MovieListResponse[];
   trendingMoviesPerWeek: MovieListResponse[];
@@ -41,6 +53,16 @@ export interface AllTrendingMoviesResponse {
 export interface AllTrendingMoviesProps {
   trendingMoviesPerDay: MoviesListProps[];
   trendingMoviesPerWeek: MoviesListProps[];
+}
+
+export interface AllTrendingTvProps {
+  trendingTvPerDay: TvListProps[];
+  trendingTvPerWeek: TvListProps[];
+}
+
+export interface AllTrendingTvResponse {
+  trendingTvPerDay: TvListResponse[];
+  trendingTvPerWeek: TvListResponse[];
 }
 
 export interface CastProps {
@@ -52,6 +74,7 @@ export interface CastProps {
 
 export interface StoreState {
   movie: MovieState;
+  tv: TvState;
 }
 
 interface MovieDetailsResponse {
@@ -112,4 +135,21 @@ export interface CastResponse {
   character: string;
   credit_id: string;
   order: number;
+}
+
+export interface TvListResponse {
+  genre_ids: number[];
+  original_name: string;
+  origin_country: string[];
+  id: number;
+  name: string;
+  vote_count: number;
+  overview: string;
+  vote_average: number;
+  poster_path: string;
+  first_air_date: Date;
+  original_language: string;
+  backdrop_path: string;
+  popularity: number;
+  media_type: string;
 }
