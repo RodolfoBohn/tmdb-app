@@ -6,7 +6,7 @@ import {
 } from "./components";
 import NavigateBeforeIcon from "@material-ui/icons/NavigateBefore";
 import NavigatAfterIcon from "@material-ui/icons/NavigateNext";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 interface Props {
   itemsCount: number;
@@ -21,6 +21,12 @@ export const WrapperList = (props: Props) => {
   const [scrollX, setScrollX] = useState(0);
   const [showLeftNavigator, setShowLeftNavigator] = useState(false);
   const [showRightNavigator, setShowRightNavigator] = useState(true);
+
+  useEffect(() => {
+    if (window.innerWidth - 60 > totalWidth) {
+      setShowRightNavigator(false)
+    }
+  },[totalWidth])
 
   function handleLeft() {
     //valor de 430 para rodar de dois em dois itens
