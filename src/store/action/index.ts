@@ -1,4 +1,4 @@
-import { AllTrendingMoviesProps, AllTrendingTvProps, MovieDetailsProps } from "../../@types";
+import { AllTrendingMoviesProps, AllTrendingTvProps, MovieDetailsProps, TvDetailsProps } from "../../@types";
 
 export interface movieActionProps {
   type: MOVIE_ACTION;
@@ -26,18 +26,6 @@ export enum MOVIE_ACTION {
   GET_SELECTED_MOVIE_SUCCESS = "GET_SELECTED_MOVIE_SUCCESS",
 }
 
-export function getTrendingMoviesSaga(): movieActionProps {
-  return {
-    type: MOVIE_ACTION.GET_TRENDING_MOVIES_SAGA,
-  };
-}
-
-export function getSelectedMovieSaga(id: string): movieActionProps {
-  return {
-    type: MOVIE_ACTION.GET_SELECTED_MOVIE_SAGA,
-    id,
-  };
-}
 
 export function getTrendingTvSaga(): tvActionProps {
   return {
@@ -49,6 +37,33 @@ export function getTrendingTvSuccess(payload: AllTrendingTvProps): tvActionProps
   return {
     type: TV_ACTION.GET_TRENDING_TV_SUCCESS,
     payload,
+  };
+}
+
+export function getSelectedTvSaga(id: string): tvActionProps {
+  return {
+    type: TV_ACTION.GET_SELECTED_TV_SAGA, 
+    id
+  }
+}
+
+export function getSelectedTvSuccess(payload: TvDetailsProps): tvActionProps {
+  return {
+    type: TV_ACTION.GET_SELECTED_TV_SUCCESS, 
+    payload
+  }
+}
+
+export function getTrendingMoviesSaga(): movieActionProps {
+  return {
+    type: MOVIE_ACTION.GET_TRENDING_MOVIES_SAGA,
+  };
+}
+
+export function getSelectedMovieSaga(id: string): movieActionProps {
+  return {
+    type: MOVIE_ACTION.GET_SELECTED_MOVIE_SAGA,
+    id,
   };
 }
 

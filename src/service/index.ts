@@ -3,6 +3,7 @@ import {
   CastResponse,
   MovieDetailsResponse,
   MovieListResponse,
+  TvDetailsResponse,
   TvListResponse,
 } from "../@types";
 
@@ -19,6 +20,13 @@ class Service {
       `/trending/movie/day?api_key=${process.env.TMDB_API_KEY}&language=pt-br`
     );
     return response.data.results as MovieListResponse[];
+  }
+
+  async getTvDetails(id: string) {
+    const response = await this.getAxiosInstance().get(
+      `/tv/${id}?api_key=${process.env.TMDB_API_KEY}&language=pt-br`
+    );
+    return response.data as TvDetailsResponse;
   }
 
   async getTrendingMoviesPerWeek() {
@@ -45,6 +53,13 @@ class Service {
   async getMovieCast(id: string) {
     const response = await this.getAxiosInstance().get(
       `/movie/${id}/credits?api_key=${process.env.TMDB_API_KEY}&language=pt-br`
+    );
+    return response.data.cast as CastResponse[];
+  }
+
+  async getTvCast(id: string) {
+    const response = await this.getAxiosInstance().get(
+      `/tv/${id}/credits?api_key=${process.env.TMDB_API_KEY}&language=pt-br`
     );
     return response.data.cast as CastResponse[];
   }

@@ -1,9 +1,9 @@
-import { MovieDetailGenre } from "../../@types"
+import { DetailGenre } from "../../@types"
 import { Wrapper } from "./components"
 
 
 interface Props {
-  genres: MovieDetailGenre[]
+  genres: DetailGenre[]
 }
 
 export const Genres = ({genres}: Props) => {

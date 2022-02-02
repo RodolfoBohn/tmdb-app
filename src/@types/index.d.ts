@@ -19,18 +19,28 @@ export interface TvListProps {
   poster_path: string;
 }
 
-export interface MovieDetailGenre {
+export interface DetailGenre {
   id: number;
   name: string;
 }
 
 export interface MovieDetailsProps {
   backdrop_path: string;
-  genres: MovieDetailGenre[];
+  genres: DetailGenre[];
   id: number;
   overview: string;
   release_date?: Date;
   title: string;
+  cast: CastProps[];
+}
+
+export interface TvDetailsProps {
+  backdrop_path: string;
+  genres: DetailGenre[];
+  id: number;
+  overview: string;
+  release_date?: Date;
+  name: string;
   cast: CastProps[];
 }
 
@@ -41,7 +51,7 @@ export interface MovieState {
 }
 
 export interface TvState {
-  selectedTv: any;
+  selectedTv: TvDetailsProps;
   trendingTvPerDay: TvListProps[];
   trendingTvPerWeek: TvListProps[];
 }
@@ -80,9 +90,9 @@ export interface StoreState {
 interface MovieDetailsResponse {
   adult: boolean;
   backdrop_path: string;
-  belongs_to_collection: object | null;
+  belongs_to_collection: Object | null;
   budget: integer;
-  genres: MovieDetailGenre[];
+  genres: DetailGenre[];
   homepage: string | null;
   id: number;
   imdb_id: string | null;
@@ -91,12 +101,12 @@ interface MovieDetailsResponse {
   overview: string;
   popularity: number;
   poster_path: string;
-  production_companies: object[];
-  production_countries: object[];
+  production_companies: Object[];
+  production_countries: Object[];
   release_date: Date;
   revenue: 401972153;
   runtime: 157;
-  spoken_languages: object[];
+  spoken_languages: Object[];
   status: string;
   tagline: string | null;
   title: string;
@@ -104,6 +114,42 @@ interface MovieDetailsResponse {
   vote_average: number;
   vote_count: number;
 }
+
+interface TvDetailsResponse {
+  adult: boolean;
+  backdrop_path: string;
+  created_by: Object[];
+  episode_run_time: number[];
+  first_air_date: Date;
+  genres: DetailGenre[];
+  homepage: string;
+  id: number;
+  in_production: true;
+  languages: string[];
+  last_air_date: Date;
+  last_episode_to_air: Object;
+  name: string;
+  next_episode_to_air: Object;
+  networks: Object[];
+  number_of_episodes: number;
+  number_of_seasons: number;
+  origin_country: string[];
+  original_language: string;
+  original_name: string;
+  overview: string;
+  popularity: number;
+  poster_path: string;
+  production_companies: Object[];
+  production_countries: Object[];
+  seasons: Object[];
+  spoken_languages: Object[];
+  status: string;
+  tagline: string;
+  type: string;
+  vote_average: number;
+  vote_count: number;
+}
+
 export interface MovieListResponse {
   adult: boolean;
   backdrop_path: string;

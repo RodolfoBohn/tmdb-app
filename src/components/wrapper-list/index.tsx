@@ -23,10 +23,15 @@ export const WrapperList = (props: Props) => {
   const [showRightNavigator, setShowRightNavigator] = useState(true);
 
   useEffect(() => {
-    if (window.innerWidth - 60 > totalWidth) {
-      setShowRightNavigator(false)
+    function verifyRightNavigator() {
+      if (window.innerWidth - 60 > totalWidth) {
+        setShowRightNavigator(false);
+      }
     }
-  },[totalWidth])
+
+    verifyRightNavigator()
+
+  }, [totalWidth]);
 
   function handleLeft() {
     //valor de 430 para rodar de dois em dois itens

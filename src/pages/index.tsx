@@ -27,10 +27,10 @@ const Home: NextPage = () => {
       <Header hasBackgroundColor />
       <PageWrapper isPrincipal>
         <PrincipalIntro />
-        <MediaList title="Filmes em alta hoje" items={moviesPerDay} />
-        <MediaList title="Filmes em alta na semana" items={moviesPerWeek} />
-        <MediaList title="Séries em alta hoje" items={tvPerDay} />
-        <MediaList title="Séries em alta na semana" items={tvPerWeek} />
+        <MediaList type="movie" title="Filmes em alta hoje" items={moviesPerDay} />
+        <MediaList type="movie" title="Filmes em alta na semana" items={moviesPerWeek} />
+        <MediaList type="tv" title="Séries em alta hoje" items={tvPerDay} />
+        <MediaList type="tv" title="Séries em alta na semana" items={tvPerWeek} />
       </PageWrapper>
     </>
   );

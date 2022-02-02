@@ -5,14 +5,17 @@ import {
   CastResponse,
   MovieDetailsResponse,
   MovieListResponse,
+  TvDetailsResponse,
   TvListResponse,
 } from "../../@types";
 import {
   getSelectedMovieSuccess,
+  getSelectedTvSuccess,
   getTrendingMoviesSuccess,
   getTrendingTvSuccess,
   movieActionProps,
   MOVIE_ACTION,
+  tvActionProps,
   TV_ACTION,
 } from "../action";
 
@@ -62,10 +65,23 @@ function* getSelectedMovie({ id }: movieActionProps) {
   yield put(getSelectedMovieSuccess(formattedMovie));
 }
 
+function* getSelectedTv({id}: tvActionProps) {
+  
+  const response: TvDetailsResponse = yield call(() => apiService.getTvDetails(id!)) 
+  const castResponse: CastResponse[] = yield call(() => apiService.getTvCast(id!))
+
+  console.log(castResponse)
+  const tvDetailsFormatted = mapper.tvResponseDetailsToProps({tv:response, cast: castResponse})
+
+  yield put(getSelectedTvSuccess(tvDetailsFormatted))
+
+}
+
 function* rootSaga() {
   yield all([
     takeLatest(MOVIE_ACTION.GET_SELECTED_MOVIE_SAGA, getSelectedMovie),
     takeLatest(MOVIE_ACTION.GET_TRENDING_MOVIES_SAGA, getTrendingMovies),
+    takeLatest(TV_ACTION.GET_SELECTED_TV_SAGA, getSelectedTv),
     takeLatest(TV_ACTION.GET_TRENDING_TV_SAGA, getTrendingTv),
   ]);
 }

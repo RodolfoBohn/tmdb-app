@@ -9,12 +9,19 @@ import {
   MovieDetailsResponse,
   MovieListResponse,
   MoviesListProps,
+  TvDetailsProps,
+  TvDetailsResponse,
   TvListProps,
   TvListResponse,
 } from "../@types";
 
 interface MovieDetailsToResponseProps {
   movie: MovieDetailsResponse;
+  cast: CastResponse[];
+}
+
+interface TvDetailsToResponseProps {
+  tv: TvDetailsResponse;
   cast: CastResponse[];
 }
 class Mapper {
@@ -37,9 +44,13 @@ class Mapper {
     data: AllTrendingMoviesResponse
   ): AllTrendingMoviesProps {
     return {
-      trendingMoviesPerDay: this.movieListResponseToMovieList(data.trendingMoviesPerDay),
-      trendingMoviesPerWeek: this.movieListResponseToMovieList(data.trendingMoviesPerWeek),
-    }
+      trendingMoviesPerDay: this.movieListResponseToMovieList(
+        data.trendingMoviesPerDay
+      ),
+      trendingMoviesPerWeek: this.movieListResponseToMovieList(
+        data.trendingMoviesPerWeek
+      ),
+    };
   }
 
   movieListResponseToMovieList(data: MovieListResponse[]): MoviesListProps[] {
@@ -55,18 +66,29 @@ class Mapper {
   allTvResponseToProps(data: AllTrendingTvResponse): AllTrendingTvProps {
     return {
       trendingTvPerDay: this.tvResponseToProps(data.trendingTvPerDay),
-      trendingTvPerWeek: this.tvResponseToProps(data.trendingTvPerWeek)
-    }
+      trendingTvPerWeek: this.tvResponseToProps(data.trendingTvPerWeek),
+    };
+  }
+
+  tvResponseDetailsToProps(data: TvDetailsToResponseProps): TvDetailsProps {
+    return {
+      backdrop_path: data.tv.backdrop_path,
+      id: data.tv.id,
+      cast: this.castResponseToDetails(data.cast),
+      genres: data.tv.genres,
+      overview: data.tv.overview,
+      name: data.tv.name,
+    };
   }
 
   private tvResponseToProps(data: TvListResponse[]): TvListProps[] {
-    return data.map(tv => {
+    return data.map((tv) => {
       return {
         id: tv.id,
         poster_path: tv.poster_path,
-        title: tv.name
-      }
-    })
+        title: tv.name,
+      };
+    });
   }
 
   private castResponseToDetails(cast: CastResponse[]): CastProps[] {

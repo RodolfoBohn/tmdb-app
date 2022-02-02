@@ -41,7 +41,7 @@ const Movie: NextPage = () => {
         title={movie.title}
       ></FeaturedImage>
       <PageWrapper isPrincipal={false}>
-        <DetailsWrapper style={{display: 'flex', justifyContent: 'space-between'}}>
+        <DetailsWrapper>
           <Overview overview={movie.overview} />
           <Genres genres={movie.genres} />
         </DetailsWrapper>
