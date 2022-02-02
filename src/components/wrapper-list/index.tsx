@@ -23,14 +23,11 @@ export const WrapperList = (props: Props) => {
   const [showRightNavigator, setShowRightNavigator] = useState(true);
 
   useEffect(() => {
-    function verifyRightNavigator() {
-      if (window.innerWidth - 60 > totalWidth) {
-        setShowRightNavigator(false);
-      }
+    if (window.innerWidth - 60 > totalWidth) {
+      setShowRightNavigator(false);
+    } else {
+      setShowRightNavigator(true)
     }
-
-    verifyRightNavigator()
-
   }, [totalWidth]);
 
   function handleLeft() {
