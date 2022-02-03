@@ -70,7 +70,6 @@ function* getSelectedTv({id}: tvActionProps) {
   const response: TvDetailsResponse = yield call(() => apiService.getTvDetails(id!)) 
   const castResponse: CastResponse[] = yield call(() => apiService.getTvCast(id!))
 
-  console.log(castResponse)
   const tvDetailsFormatted = mapper.tvResponseDetailsToProps({tv:response, cast: castResponse})
 
   yield put(getSelectedTvSuccess(tvDetailsFormatted))

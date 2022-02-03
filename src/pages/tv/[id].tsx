@@ -51,7 +51,7 @@ const Tv: NextPage = () => {
   );
 };
 
-export const getServerSideProps = storeWrapper.getServerSideProps(
+export const getStaticProps = storeWrapper.getStaticProps(
   async ({ store, params }) => {
     const id = params!.id as string;
 
@@ -59,7 +59,18 @@ export const getServerSideProps = storeWrapper.getServerSideProps(
     store.dispatch(END);
 
     await store.sagaTask.toPromise();
+
+    return {
+      revalidate: 60 * 60,
+    }
   }
 );
+
+export function getStaticPaths() {
+  return {
+    paths: [],
+    fallback: true,
+  }
+}
 
 export default Tv;
