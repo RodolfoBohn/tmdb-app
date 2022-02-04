@@ -1,5 +1,5 @@
 import type { NextPage } from "next";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 import { END } from "redux-saga";
 import { getTrendingMoviesSaga, getTrendingTvSaga } from "../store/action";
 import { storeWrapper } from "../store/store";
@@ -8,8 +8,10 @@ import { MediaList } from "../components/media-list";
 import { PageWrapper } from "../components/page-wrapper";
 import { PrincipalIntro } from "../components/principal-intro";
 import { Header } from "../components/header";
+import {useEffect} from 'react'
 
 const Home: NextPage = () => {
+  const dispatch = useDispatch()
   const moviesPerDay = useSelector(
     (state: StoreState) => state.movie.trendingMoviesPerDay
   );
@@ -22,6 +24,12 @@ const Home: NextPage = () => {
   const tvPerWeek = useSelector(
     (state: StoreState) => state.tv.trendingTvPerWeek
   );
+
+  useEffect(() => {
+    dispatch(getTrendingMoviesSaga())
+    dispatch(getTrendingTvSaga());
+  },[dispatch])
+
   return (
     <>
       <Header hasBackgroundColor />
@@ -36,13 +44,13 @@ const Home: NextPage = () => {
   );
 };
 
-export const getServerSideProps = storeWrapper.getServerSideProps(
-  async ({ store }) => {
-    store.dispatch(getTrendingMoviesSaga());
-    store.dispatch(getTrendingTvSaga());
-    store.dispatch(END);
-    await store.sagaTask.toPromise();
-  }
-);
+// export const getServerSideProps = storeWrapper.getServerSideProps(
+//   async ({ store }) => {
+//     store.dispatch(getTrendingMoviesSaga());
+//     store.dispatch(getTrendingTvSaga());
+//     store.dispatch(END);
+//     await store.sagaTask.toPromise();
+//   }
+// );
 
 export default Home;
